@@ -1,0 +1,116 @@
+{
+  "name": "verge3d",
+  "version": "4.3.0",
+  "date": "2023-03-19",
+  "description": "Toolkit for creating 3D web interactives",
+  "type": "module",
+  "main": "./build/v3d.js",
+  "module": "./build/v3d.module.js",
+  "exports": {
+    ".": "./build/v3d.module.js"
+  },
+  "repository": "verge3d",
+  "files": [
+    "build/v3d.js",
+    "build/v3d.module.js",
+    "keymanager.py",
+    "LICENSE.txt",
+    "README.md"
+  ],
+  "directories": {
+    "doc": "docs",
+    "example": "examples",
+    "test": "test"
+  },
+  "bin": {
+    "keymanager": "./keymanager.py"
+  },
+  "scripts": {
+    "babel-lint": "node babel_lint.js",
+    "dev": "rollup -c -w -m inline --environment DEBUG_SHADERS",
+    "dev-puzzles": "npm run --prefix puzzles dev",
+    "dev-copy": "rollup -c -w -m inline --environment COPY_ENGINE,DEBUG_SHADERS",
+    "build": "rollup -c --environment DEBUG_SHADERS",
+    "build-release": "rollup -c && npm run build-umd && npm run build-esm && npm run test-v3d",
+    "build-umd": "cp build/v3d.js build/v3d.unminified.js && babel build/v3d.unminified.js | terser -cm > build/v3d.js",
+    "build-esm": "cp build/v3d.module.js build/v3d.module.unminified.js && terser build/v3d.module.unminified.js -cm > build/v3d.module.js",
+    "test-v3d": "npm run babel-lint",
+    "build-puzzles": "npm run --prefix puzzles build",
+    "build-puzzles-release": "npm run --prefix puzzles build-release",
+    "copy-engine": "sh utils/copy_engine.sh applications",
+    "build-docs": "node docs/generate.js",
+    "build-docs-manual": "node docs/generate.js manual",
+    "dev-docs": "npm-watch build-docs",
+    "dev-docs-manual": "npm-watch build-docs-manual",
+    "build-all": "npm run build-release && npm run build-puzzles-release && npm run copy-engine && npm run build-docs",
+    "test": "npm run test-unit",
+    "test-unit": "npm run unit --prefix test",
+    "test-unit-examples": "npm run unit-examples --prefix test",
+    "test-e2e": "node test/e2e/puppeteer.js --apps && node test/e2e/puppeteer.js",
+    "test-e2e-cov": "node test/e2e/check-coverage.js",
+    "prepack": "[[ -f manager/lib/keymanager.py ]] && cp manager/lib/keymanager.py . || exit 0",
+    "postpack": "rm -f ./keymanager.py",
+    "make-screenshot": "node test/e2e/puppeteer.js --make --apps && node test/e2e/puppeteer.js --make"
+  },
+  "watch": {
+    "build-docs": {
+      "patterns": [
+        "docs/api",
+        "docs/manual"
+      ],
+      "extensions": [
+        "html"
+      ],
+      "quiet": false
+    },
+    "build-docs-manual": {
+      "patterns": [
+        "docs/manual"
+      ],
+      "extensions": [
+        "html"
+      ],
+      "quiet": false
+    }
+  },
+  "keywords": [
+    "verge3d",
+    "v3d.js",
+    "3dweb",
+    "web3d",
+    "blender",
+    "3ds-max",
+    "maya",
+    "gltf",
+    "metaverse",
+    "javascript",
+    "3d",
+    "virtual-reality",
+    "augmented-reality",
+    "webgl",
+    "webgl2",
+    "webaudio",
+    "webgpu",
+    "webxr",
+    "canvas",
+    "svg",
+    "html5"
+  ],
+  "author": "Soft8Soft",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "bugs": {
+    "url": "https://www.soft8soft.com/forum/bug-reports-and-feature-requests/"
+  },
+  "homepage": "https://www.soft8soft.com/verge3d/",
+  "devDependencies": {
+    "@babel/cli": "^7.18.10",
+    "@babel/core": "^7.18.13",
+    "@babel/preset-env": "^7.18.10",
+    "chalk": "^4.1.2",
+    "glob": "^7.2.3",
+    "npm-watch": "^0.6.0",
+    "rollup": "^1.32.1",
+    "strip-comments": "^2.0.1",
+    "terser": "^5.15.0"
+  }
+}
