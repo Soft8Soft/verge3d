@@ -1,7 +1,7 @@
 {
   "name": "verge3d",
-  "version": "4.3.1",
-  "date": "2023-04-14",
+  "version": "4.4.0",
+  "date": "2023-07-24",
   "description": "Toolkit for creating 3D web interactives",
   "type": "module",
   "main": "./build/v3d.js",
@@ -109,7 +109,8 @@
     "chalk": "^4.1.2",
     "glob": "^7.2.3",
     "npm-watch": "^0.6.0",
-    "rollup": "^1.32.1",
+    "rollup": "^3.20.2",
+    "rollup-plugin-class-tree": "file:utils/rollup-plugin-class-tree",
     "strip-comments": "^2.0.1",
     "terser": "^5.15.0"
   }
