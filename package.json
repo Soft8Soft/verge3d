@@ -1,7 +1,7 @@
 {
   "name": "verge3d",
-  "version": "4.6.0",
-  "date": "2024-03-19",
+  "version": "4.7.0",
+  "date": "2024-07-22",
   "description": "Toolkit for creating 3D web interactives",
   "type": "module",
   "main": "./build/v3d.js",
@@ -38,19 +38,14 @@
     "build-puzzles": "npm run --prefix puzzles build",
     "build-puzzles-release": "npm run --prefix puzzles build-release",
     "copy-engine": "sh utils/copy_engine.sh applications",
-    "build-docs": "node docs/generate.js",
+    "build-docs": "node docs/generate.js && npm run build-docs-pzlib-api",
     "build-docs-manual": "node docs/generate.js manual",
+    "build-docs-pzlib-api": "npm run --prefix docs/pzlib_api build-docs",
     "dev-docs": "npm-watch build-docs",
     "dev-docs-manual": "npm-watch build-docs-manual",
     "build-all": "npm run build-release && npm run build-puzzles-release && npm run copy-engine && npm run build-docs",
-    "test": "npm run test-unit",
-    "test-unit": "npm run unit --prefix test",
-    "test-unit-examples": "npm run unit-examples --prefix test",
-    "test-e2e": "node test/e2e/puppeteer.js --apps && node test/e2e/puppeteer.js",
-    "test-e2e-cov": "node test/e2e/check-coverage.js",
     "prepack": "[[ -f manager/lib/keymanager.py ]] && cp manager/lib/keymanager.py . || exit 0",
-    "postpack": "rm -f ./keymanager.py",
-    "make-screenshot": "node test/e2e/puppeteer.js --make --apps && node test/e2e/puppeteer.js --make"
+    "postpack": "rm -f ./keymanager.py"
   },
   "watch": {
     "build-docs": {
