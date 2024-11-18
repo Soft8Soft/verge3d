@@ -1,7 +1,7 @@
 {
   "name": "verge3d",
-  "version": "4.7.0",
-  "date": "2024-07-22",
+  "version": "4.8.0",
+  "date": "2024-11-13",
   "description": "Toolkit for creating 3D web interactives",
   "type": "module",
   "main": "./build/v3d.js",
@@ -43,7 +43,7 @@
     "build-docs-pzlib-api": "npm run --prefix docs/pzlib_api build-docs",
     "dev-docs": "npm-watch build-docs",
     "dev-docs-manual": "npm-watch build-docs-manual",
-    "build-all": "npm run build-release && npm run build-puzzles-release && npm run copy-engine && npm run build-docs",
+    "build-all": "npm run build-release && npm run copy-engine && npm run build-puzzles-release && npm run build-docs",
     "prepack": "[[ -f manager/lib/keymanager.py ]] && cp manager/lib/keymanager.py . || exit 0",
     "postpack": "rm -f ./keymanager.py"
   },
